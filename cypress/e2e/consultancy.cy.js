@@ -55,15 +55,42 @@ describe('Formulário de consultoria', () => {
                 .find('input')
                 .check()
                 .should('be.checked')
-
         })
 
-
+        cy.get('input[type="file"]') // fazendo upload de arquivo
+            .selectFile('./cypress/fixtures/document.pdf', { force: true }) //caminho relativo e o force serve pq o botão está hidden
 
         // cy.get('#details').type('teste')
+        cy.get('textarea[placeholder="Descreva mais detalhes sobre sua necessidade"]')
+            .type("Integer vehicula gravida justo, vitae laoreet erat auctor sed. Maecenas sed dictum sem. Phasellus at erat blandit magna dictum consequat eget ut sapien. Etiam nec sodales tortor, sit amet vehicula augue.")
 
-        // cy.get('#technologies').type('Cypress').click()
+        const techs = [
+            'Cypress',
+            'Selenium',
+            'WebDriverIO',
+            'Robot Framework'
+        ]
+        techs.forEach((tech) => {
+            // cy.get('#technologies').type('Cypress').click()
+            cy.get('input[placeholder="Digite uma tecnologia e pressione Enter"]')
+                .type(tech)
+                .type('{enter}')
 
+            cy.contains('label', 'Tecnologias')
+                .parent()
+                .contains('span', tech)
+                .should('be.visible')
+        })
+
+        cy.contains('label', 'termos de uso')
+            .find('input')
+            .check()
+
+        cy.contains('button', 'Enviar formulário')
+            .click()
+
+        cy.contains('Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
+            .should('be.visible')
     })
 })
 

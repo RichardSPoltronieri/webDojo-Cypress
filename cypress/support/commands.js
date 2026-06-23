@@ -36,6 +36,12 @@ Cypress.Commands.add('submitLoginForm', (email, senha) => {
     cy.contains('button', 'Entrar').click()
 })
 
+Cypress.Commands.add('validLogin', (email, senha) => {
+    cy.get('#email').type('papito@webdojo.com')
+    cy.get('#password').type('katana123')
+    cy.contains('button', 'Entrar').click()
+})
+
 Cypress.Commands.add('goTo', (buttonName, pageTitle) => {
     cy.contains('button', buttonName)
             .should('be.visible')

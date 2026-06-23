@@ -1,5 +1,5 @@
 describe('Formulário de consultoria', () => {
-    it.only('Deve solicitar consultoria individual', () => {
+    it('Deve solicitar consultoria individual', () => {
         cy.start()
         cy.submitLoginForm('papito@webdojo.com', 'katana123')
 
@@ -62,7 +62,7 @@ describe('Formulário de consultoria', () => {
 
         // cy.get('#details').type('teste')
         cy.get('textarea[placeholder="Descreva mais detalhes sobre sua necessidade"]')
-            .type("Integer vehicula gravida justo, vitae laoreet erat auctor sed. Maecenas sed dictum sem. Phasellus at erat blandit magna dictum consequat eget ut sapien. Etiam nec sodales tortor, sit amet vehicula augue.")
+            .type("Integer vehicula gravida justo, vitae laoreet erat auctor sed. Maecenas sed dictum sem. Etiam nec sodales tortor, sit amet vehicula augue.")
 
         const techs = [
             'Cypress',
@@ -89,8 +89,15 @@ describe('Formulário de consultoria', () => {
         cy.contains('button', 'Enviar formulário')
             .click()
 
-        cy.contains('Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
+        
+        cy.get('.modal', { timeout: 7000 })
             .should('be.visible')
+            .find('.modal-content')
+            .should('be.visible')
+            .and('have.text','Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
+
+        // cy.contains('Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
+        //     .should('be.visible')
     })
 
     it('Deve verificar os campos obrigatórios', () => {

@@ -8,7 +8,7 @@ describe('Links abrindo nova guia/janela', () => {
             .and('have.attr', 'target', '_blank')
     })
 
-    it.only('Acessa link termos de uso removendo o target blank', () => {
+    it('Acessa link termos de uso removendo o target blank', () => {
         cy.start()
         cy.validLogin()
 

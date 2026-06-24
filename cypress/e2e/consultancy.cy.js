@@ -1,5 +1,5 @@
 describe('Formulário de consultoria', () => {
-    it('Deve solicitar consultoria individual', () => {
+    it.only('Deve solicitar consultoria individual', () => {
         cy.start()
         cy.validLogin()
 

@@ -1,11 +1,10 @@
 describe('Testar Drag and Drop', () => {
     it('Deve mover uma tarefa de ToDo para Done e atualizar o board', () => {
         cy.start()
-        cy.validLogin()
+        cy.login()
         cy.contains('Kanban').click()
 
         const dataTransfer = new DataTransfer()
-
 
         cy.contains('div[draggable=true]','Documentar API')
             .trigger('dragstart', { dataTransfer } )

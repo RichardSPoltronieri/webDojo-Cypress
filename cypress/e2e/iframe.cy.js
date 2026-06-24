@@ -1,7 +1,7 @@
 describe('iFrame', () => {
     it('Deve poder dar play no vídeo', () => {
         cy.start()
-        cy.validLogin()
+        cy.login()
         cy.contains('Video').click()
 
         cy.get('iframe[title="Video Player"]') //obtendo a tag HTML com o title

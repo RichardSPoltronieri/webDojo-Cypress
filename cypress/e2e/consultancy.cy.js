@@ -1,10 +1,11 @@
 describe('Formulário de consultoria', () => {
-    it.only('Deve solicitar consultoria individual', () => {
+    beforeEach(() => {
         cy.start()
-        cy.validLogin()
-
+        cy.login()
         cy.goTo('Formulários', 'Consultoria')
+    });
 
+    it.only('Deve solicitar consultoria individual', () => {
         // cy.get('#name').type('Richard Soares')
         cy.get('input[placeholder="Digite seu nome completo"]').type('Richard Soares')
         // cy.get('#email').type('email_richard@gmail.com')
@@ -89,21 +90,18 @@ describe('Formulário de consultoria', () => {
         cy.contains('button', 'Enviar formulário')
             .click()
 
-        
+
         cy.get('.modal', { timeout: 7000 })
             .should('be.visible')
             .find('.modal-content')
             .should('be.visible')
-            .and('have.text','Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
+            .and('have.text', 'Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
 
         // cy.contains('Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
         //     .should('be.visible')
     })
 
     it('Deve verificar os campos obrigatórios', () => {
-        cy.start()
-        cy.validLogin()
-        cy.goTo('Formulários', 'Consultoria')
         cy.contains('button', 'Enviar formulário')
             .click()
 
@@ -130,9 +128,6 @@ describe('Formulário de consultoria', () => {
             .should('have.text', 'Você precisa aceitar os termos de uso')
             .and('have.class', 'text-red-400')
             .and('have.css', 'color', 'rgb(248, 113, 113)')
-
     })
-
-
 })
 

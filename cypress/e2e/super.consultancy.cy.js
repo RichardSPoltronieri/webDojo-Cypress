@@ -3,34 +3,13 @@ describe('Formulário de consultoria', () => {
         cy.start()
         cy.login()
         cy.goTo('Formulários', 'Consultoria')
+
+        cy.fixture('consultancy').as('consultancyData')
     });
 
-    it('Deve solicitar consultoria individual', () => {
+    it('Deve solicitar consultoria individual', function() {
 
-        const consultancyForm = {
-            name: 'Richard Soares',
-            email: 'email_richard@gmail.com',
-            phone: '(19) 99999-1000',
-            consultancyType: 'Individual',
-            personType: 'cpf',
-            document: '65602530070',
-            discoveryChannels: [
-                'Instagram',
-                'LinkedIn',
-                'Udemy',
-                'YouTube',
-                'Indicação de Amigo'
-            ],
-            file: './cypress/fixtures/document.pdf',
-            description: 'Integer vehicula gravida justo, vitae laoreet erat auctor sed. Maecenas sed dictum sem. Etiam nec sodales tortor, sit amet vehicula augue.',
-            techs: [
-                'Cypress',
-                'Selenium',
-                'WebDriverIO',
-                'Robot Framework'
-            ],
-            terms: true
-        }
+        const consultancyForm = this.consultancyData.personal
 
         cy.get('input[placeholder="Digite seu nome completo"]').type(consultancyForm.name)
         cy.get('input[placeholder="Digite seu email"]').type(consultancyForm.email)
@@ -111,26 +90,9 @@ describe('Formulário de consultoria', () => {
             .and('have.text', 'Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
     })
 
-    it('Deve solicitar consultoria in Company', () => {
+    it('Deve solicitar consultoria in Company', function() {
 
-        const consultancyForm = {
-            name: 'Richard Soares',
-            email: 'email_richard@gmail.com',
-            phone: '(19) 99999-1000',
-            consultancyType: 'In Company',
-            personType: 'cnpj',
-            document: '33810761000168',
-            discoveryChannels: [
-                'LinkedIn',
-            ],
-            file: './cypress/fixtures/document.pdf',
-            description: 'Integer vehicula gravida justo, vitae laoreet erat auctor sed. Maecenas sed dictum sem. Etiam nec sodales tortor, sit amet vehicula augue.',
-            techs: [
-                'Cypress',
-                'Robot Framework'
-            ],
-            terms: true
-        }
+        const consultancyForm = this.consultancyData.company
 
         cy.get('input[placeholder="Digite seu nome completo"]').type(consultancyForm.name)
         cy.get('input[placeholder="Digite seu email"]').type(consultancyForm.email)

@@ -5,7 +5,7 @@ describe('Formulário de consultoria', () => {
         cy.goTo('Formulários', 'Consultoria')
     });
 
-    it.only('Deve solicitar consultoria individual', () => {
+    it('Deve solicitar consultoria individual', () => {
         // cy.get('#name').type('Richard Soares')
         cy.get('input[placeholder="Digite seu nome completo"]').type('Richard Soares')
         // cy.get('#email').type('email_richard@gmail.com')

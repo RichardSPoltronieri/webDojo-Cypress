@@ -12,7 +12,7 @@ jobs:
         with:
           working-directory: web
           start: npm run dev
-          wait-on: 'http://localhost:3000' #Garantir essa porta
+          wait-on: 'http://localhost:3000'
 
       - uses: actions/upload-artifact@v4
         if: failure()

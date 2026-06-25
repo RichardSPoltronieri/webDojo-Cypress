@@ -21,29 +21,22 @@ describe('Formulário de consultoria', () => {
 
     it('Deve verificar os campos obrigatórios', () => {
         cy.submitConsultancyForm()
-        cy.contains('label', 'Nome Completo')
-            .parent()
-            .find('p')
-            .should('be.visible')
-            .should('have.text', 'Campo obrigatório')
-            .and('have.class', 'text-red-400')
-            .and('have.css', 'color', 'rgb(248, 113, 113)')
 
-        cy.contains('label', 'Email')
-            .parent()
-            .find('p')
-            .should('be.visible')
-            .should('have.text', 'Campo obrigatório')
-            .and('have.class', 'text-red-400')
-            .and('have.css', 'color', 'rgb(248, 113, 113)')
+        const requiredFiedls = [
+            { label: 'Nome Completo', message: 'Campo obrigatório' },
+            { label: 'Email', message: 'Campo obrigatório' },
+            { label: 'termos de uso', message: 'Você precisa aceitar os termos de uso' },
+        ]
 
-        cy.contains('label', 'termos de uso')
+        requiredFiedls.forEach(({label, message}) => {
+            cy.contains('label', label)
             .parent()
             .find('p')
             .should('be.visible')
-            .should('have.text', 'Você precisa aceitar os termos de uso')
+            .should('have.text', message)
             .and('have.class', 'text-red-400')
             .and('have.css', 'color', 'rgb(248, 113, 113)')
+        })
     })
 })
 

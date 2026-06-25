@@ -10,9 +10,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          working-directory: web          # onde estão cypress/ e package.json dos testes
-          start: npm run dev              # comando pra subir a aplicação antes dos testes
-          wait-on: 'http://localhost:3000' # aguarda a app estar pronta (ajuste a porta se necessário)
+          working-directory: web
+          start: npm run dev
+          wait-on: 'http://localhost:3000'
 
       - uses: actions/upload-artifact@v4
         if: failure()

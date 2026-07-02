@@ -58,7 +58,7 @@ describe('Gerenciamento de perfis no Github', () => {
             
     })
 
-    it.only('Deve validar o link do gitHub', () => {
+    it('Deve validar o link do gitHub', () => {
 
         const profile = {
 

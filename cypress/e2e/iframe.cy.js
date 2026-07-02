@@ -4,6 +4,8 @@ describe('iFrame', () => {
         cy.login()
         cy.contains('Video').click()
 
+        cy.wait(3000) //esperando 3 segundos para carregar o iframe
+
         cy.get('iframe[title="Video Player"]') //obtendo a tag HTML com o title
             .should('exist') //verificando se existe
             .its('0.contentDocument.body') //pegando o conteúdo do iframe

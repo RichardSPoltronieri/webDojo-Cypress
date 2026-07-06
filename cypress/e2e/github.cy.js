@@ -1,3 +1,5 @@
+import { getToday } from '../support/utils'
+
 describe('Gerenciamento de perfis no Github', () => {
 
     beforeEach(() => {

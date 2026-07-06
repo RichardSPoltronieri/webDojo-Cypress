@@ -25,10 +25,10 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-real-events'
 import './actions/consultancy.actions'
+import { getToday } from './utils'
 
 Cypress.Commands.add('start', () => {
-    cy.viewport(1440, 900)
-    cy.visit('http://localhost:3000')
+    cy.visit('/')
 })
 
 Cypress.Commands.add('submitLoginForm', (email, senha) => {
@@ -45,16 +45,6 @@ Cypress.Commands.add('goTo', (buttonName, pageTitle) => {
         .should('be.visible')
 })
 
-
-function getToday() {
-    const today = new Date()
-    const day = String(today.getDate()).padStart(2, '0')
-    const month = String(today.getMonth() + 1).padStart(2, '0')
-    const year = today.getFullYear()
-    return `${day}/${month}/${year}`
-}
-
-
 // Helpers
 Cypress.Commands.add('login', (ui = false) => {
 
@@ -62,12 +52,14 @@ Cypress.Commands.add('login', (ui = false) => {
         cy.get('#email').type('papito@webdojo.com')
         cy.get('#password').type('katana123')
         cy.contains('button', 'Entrar').click()
+
     } else {
+
         const token = 'e1033d63a53fe66c0fd3451c7fd8f617'
         const loginDate = getToday()
         cy.setCookie('login_date', loginDate)
 
-        cy.visit('http://localhost:3000/dashboard', {
+        cy.visit('/dashboard', {
             onBeforeLoad(win) {
                 win.localStorage.setItem('token', token)
             }

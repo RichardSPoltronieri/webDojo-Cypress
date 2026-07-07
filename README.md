@@ -1,94 +1,38 @@
-# WebDojo - Automação de Testes E2E com Cypress
+# Automação de Testes - WebDojo
 
-## 📌 Sobre o Projeto
+Projeto de automação de testes End-to-End (E2E) desenvolvido com **Cypress** para validar os principais fluxos da aplicação **WebDojo**.
 
-Este repositório contém a automação de testes End-to-End (E2E) da aplicação **WebDojo**, desenvolvida com o objetivo de validar o comportamento de diferentes componentes e fluxos da interface web.
+## 📋 Tecnologias Utilizadas
 
-O projeto foi construído utilizando o **Cypress** como framework principal de automação, seguindo boas práticas de organização dos testes, separação da massa de dados e reutilização de comandos.
-
----
-
-## 🎯 Objetivo
-
-O objetivo deste projeto é demonstrar uma estrutura escalável de automação de testes front-end, aplicando conceitos utilizados em projetos reais, como:
-
-- Escrita de cenários E2E independentes;
-- Separação de massa de testes através de fixtures;
-- Reutilização de ações com Custom Commands;
-- Organização de testes por funcionalidade;
-- Validação de componentes complexos da interface;
-- Simulação de interações reais do usuário.
-
----
-
-## 🛠 Tecnologias Utilizadas
-
-- JavaScript (ES6+)
 - Cypress
-- Cypress Real Events
+- JavaScript
 - Node.js
-- Yarn / NPM
+- Chrome Browser
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🚀 Pré-requisitos
 
-```bash
-WEB
-│
-├── cypress
-│   │
-│   ├── e2e                     # Cenários automatizados
-│   │   ├── consultancy.cy.js   # Testes de formulário de consultoria
-│   │   ├── drop.cy.js          # Testes de drag and drop
-│   │   ├── hover.cy.js         # Testes de eventos de hover
-│   │   ├── iframe.cy.js        # Testes envolvendo iframes
-│   │   ├── links.cy.js         # Validação de links e navegação
-│   │   ├── login.cy.js         # Cenários de autenticação
-│   │   ├── studio.cy.js        # Cenários criados utilizando Cypress Studio
-│   │   └── super.consultancy.cy.js # Cenários avançados de consultoria
-│   │
-│   ├── fixtures                # Massa de dados e arquivos utilizados nos testes
-│   │   ├── consultancy.json
-│   │   ├── document.pdf
-│   │   └── example.json
-│   │
-│   ├── downloads               # Arquivos baixados durante as execuções
-│   │
-│   ├── screenshots             # Evidências geradas em caso de falha
-│   │
-│   └── support
-│       ├── commands.js         # Custom Commands
-│       └── e2e.js              # Configurações globais dos testes
-│
-├── cypress.config.js           # Configuração principal do Cypress
-├── package.json                # Dependências e scripts do projeto
-└── package-lock.json           # Controle das versões das dependências
-```
+Antes de iniciar, certifique-se de possuir instalado:
 
----
-
-## ⚙️ Pré-requisitos
-
-Antes de executar o projeto, é necessário possuir instalado:
-
-- Node.js 18 ou superior
+- Node.js
 - NPM ou Yarn
+- Google Chrome
 
 ---
 
-## 🚀 Instalação
+## 📦 Instalação
 
 Clone o repositório:
 
 ```bash
-git clone git@github.com:RichardSPoltronieri/webDojo-Cypress.git
+git clone <url-do-repositorio>
 ```
 
 Acesse a pasta do projeto:
 
 ```bash
-cd webDojo-Cypress
+cd webdojo
 ```
 
 Instale as dependências:
@@ -97,132 +41,247 @@ Instale as dependências:
 npm install
 ```
 
-ou
-
-```bash
-yarn install
-```
-
 ---
 
 ## ▶️ Executando a Aplicação
 
-Este projeto utiliza o pacote **serve** para disponibilizar a aplicação localmente.
+A aplicação **WebDojo** está localizada no mesmo repositório deste projeto.
 
-Execute:
+Antes de executar os testes automatizados, inicie a aplicação:
 
 ```bash
 npm run dev
 ```
 
-A aplicação ficará disponível em:
-
-```
-http://localhost:3000
-```
+O comando acima irá disponibilizar a aplicação na porta **3000**.
 
 ---
 
 ## 🧪 Executando os Testes
 
-### Abrir o Cypress em modo interativo
+### Executar toda a suíte de testes
 
 ```bash
-npx cypress open
+npm test
 ```
 
-Com a interface do Cypress aberta, selecione o cenário desejado para execução.
-
----
-
-### Executar todos os testes em modo headless
+Comando executado:
 
 ```bash
-npx cypress run
+npx cypress run --browser chrome --config viewportWidth=1440,viewportHeight=900
 ```
 
 ---
 
-### Executar um cenário específico
-
-Exemplo executando apenas o teste de login:
+### Executar apenas os testes de Login
 
 ```bash
-npx cypress run --spec "cypress/e2e/login.cy.js"
+npm run test:login
+```
+
+Comando executado:
+
+```bash
+npx cypress run --browser chrome --spec cypress/e2e/login.cy.js --config viewportWidth=1440,viewportHeight=900
 ```
 
 ---
 
-## 🧩 Massa de Dados
-
-Os testes utilizam o diretório `fixtures` para armazenar dados externos, facilitando a manutenção e permitindo a reutilização entre diferentes cenários.
-
-Exemplos de utilização:
-
-- Dados de formulários em formato JSON;
-- Arquivos utilizados em upload;
-- Objetos de teste reutilizáveis.
-
----
-
-## 🔁 Custom Commands
-
-Comandos personalizados foram centralizados no arquivo:
+### Executar os testes de Login em resolução Mobile
 
 ```bash
-cypress/support/commands.js
+npm run test:login:mobile
 ```
 
-Essa abordagem reduz duplicação de código e melhora a legibilidade dos cenários de teste.
+Comando executado:
+
+```bash
+npx cypress run --browser chrome --spec cypress/e2e/login.cy.js --config viewportWidth=414,viewportHeight=896
+```
 
 ---
 
-## 🎯 Cenários Automatizados
+## 📁 Estrutura do Projeto
 
-Atualmente o projeto possui cobertura para os seguintes cenários:
-
-| Funcionalidade | Descrição |
-|---|---|
-| Login | Validação de autenticação e comportamento da tela de login |
-| Formulários | Preenchimento e validação de formulários de consultoria |
-| Upload | Envio de documentos através da interface |
-| Drag and Drop | Interações de arrastar e soltar elementos |
-| Hover | Validação de elementos acionados pelo mouse |
-| Iframes | Interações com conteúdos embarcados |
-| Navegação | Validação de links e redirecionamentos |
+```text
+.
+├── cypress
+│   ├── downloads
+│   │
+│   ├── e2e
+│   │   ├── alerts.cy.js
+│   │   ├── cep.cy.js
+│   │   ├── consultancy.cy.js
+│   │   ├── drop.cy.js
+│   │   ├── github.cy.js
+│   │   ├── hover.cy.js
+│   │   ├── iframe.cy.js
+│   │   ├── links.cy.js
+│   │   ├── login.cy.js
+│   │   ├── studio.cy.js
+│   │   └── superconsultancy.cy.js
+│   │
+│   ├── fixtures
+│   │   ├── cep.json
+│   │   ├── consultancy.json
+│   │   └── document.pdf
+│   │
+│   └── support
+│       ├── actions
+│       │   └── consultancy.actions.js
+│       ├── commands.js
+│       ├── e2e.js
+│       └── utils.js
+│
+├── dist
+├── node_modules
+├── .github
+├── .gitignore
+├── cypress.config.js
+├── package.json
+├── package-lock.json
+├── yarn.lock
+└── README.md
+```
 
 ---
 
-## 🧱 Boas práticas aplicadas
+## 📂 Organização das Pastas
 
-Este projeto segue algumas práticas comuns em automação de testes:
+### `cypress/e2e`
 
-- Separação entre cenários e massa de dados;
-- Utilização de fixtures para tornar os testes mais manuteníveis;
-- Reaproveitamento de ações por meio de Custom Commands;
-- Organização dos testes por contexto de negócio;
-- Uso de interações reais com o usuário através do `cypress-real-events`;
-- Estrutura preparada para crescimento e inclusão de novos cenários.
+Contém os cenários automatizados organizados por funcionalidade.
+
+| Arquivo | Descrição |
+|----------|-----------|
+| alerts.cy.js | Validação de alertas |
+| cep.cy.js | Consulta de CEP |
+| consultancy.cy.js | Fluxos de consultoria |
+| drop.cy.js | Testes de Drag and Drop |
+| github.cy.js | Integração com GitHub |
+| hover.cy.js | Eventos de Hover |
+| iframe.cy.js | Manipulação de iFrames |
+| links.cy.js | Validação de links |
+| login.cy.js | Fluxos de autenticação |
+| studio.cy.js | Funcionalidades da página Studio |
+| superconsultancy.cy.js | Fluxos avançados de consultoria |
 
 ---
 
-## 📈 Melhorias futuras
+### `cypress/fixtures`
 
-Possíveis evoluções para o projeto:
+Armazena arquivos utilizados como massa de dados durante a execução dos testes.
 
-- Implementação de Page Object Model (POM);
-- Integração com pipelines CI/CD;
-- Geração de relatórios de execução;
-- Execução paralela dos testes;
-- Integração com ferramentas de qualidade de código.
+Exemplos:
+
+- Arquivos JSON
+- Documentos para upload
+- Dados mockados
+
+---
+
+### `cypress/support`
+
+Contém arquivos compartilhados entre toda a suíte de testes.
+
+#### `actions/`
+
+Responsável por concentrar ações reutilizáveis utilizadas pelos cenários.
+
+#### `commands.js`
+
+Comandos customizados do Cypress registrados através de:
+
+```javascript
+Cypress.Commands.add()
+```
+
+#### `utils.js`
+
+Funções auxiliares utilizadas pelos testes.
+
+#### `e2e.js`
+
+Arquivo carregado automaticamente antes da execução dos testes.
+
+---
+
+## 📱 Resoluções Utilizadas
+
+### Desktop
+
+```text
+1440 x 900
+```
+
+### Mobile
+
+```text
+414 x 896
+```
+
+---
+
+## 📜 Scripts Disponíveis
+
+| Script | Descrição |
+|----------|-----------|
+| `npm run dev` | Inicializa a aplicação WebDojo |
+| `npm test` | Executa toda a suíte de testes |
+| `npm run test:login` | Executa apenas os testes de login |
+| `npm run test:login:mobile` | Executa os testes de login em resolução mobile |
+
+---
+
+## 🔄 Fluxo de Execução
+
+### 1. Instalar dependências
+
+```bash
+npm install
+```
+
+### 2. Iniciar a aplicação
+
+```bash
+npm run dev
+```
+
+### 3. Executar os testes
+
+Suíte completa:
+
+```bash
+npm test
+```
+
+Ou apenas login:
+
+```bash
+npm run test:login
+```
+
+Ou login mobile:
+
+```bash
+npm run test:login:mobile
+```
+
+---
+
+## ✅ Boas Práticas Adotadas
+
+- Organização dos testes por funcionalidade
+- Reutilização de ações através da pasta `actions`
+- Utilização de fixtures para massas de teste
+- Comandos customizados do Cypress
+- Separação de responsabilidades
+- Estrutura escalável para crescimento da suíte
 
 ---
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Richard Soares**
+**Richard Soares**
 
-Quality Assurance Engineer focado em automação de testes, qualidade de software e melhoria contínua.
-
-GitHub:
-https://github.com/RichardSPoltronieri
+Quality Assurance Engineer

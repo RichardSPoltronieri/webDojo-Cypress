@@ -1,2 +1,4 @@
 node_modules
-screenshots
+cypress/screenshots
+cypress/donwloads
+cypress/videos

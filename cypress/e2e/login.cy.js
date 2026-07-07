@@ -1,13 +1,9 @@
 import { getToday } from '../support/utils'
 
-describe('Login', () => {
-  // beforeEach(() => {
-  //   cy.viewport(1440, 900)
-  //   cy.visit('http://localhost:3000')
-  // })
- 
+describe('Login', () => { 
   it('Deve logar com sucesso', () => {
     cy.start()
+    
     cy.submitLoginForm('papito@webdojo.com', 'katana123')
     
     cy.get('[data-cy="user-name"]')

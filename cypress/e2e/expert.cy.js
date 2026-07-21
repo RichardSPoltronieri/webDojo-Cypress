@@ -1,3 +1,6 @@
+import { faker } from '@faker-js/faker'
+import _ from 'lodash'
+
 describe('Expert', () => {
 
     beforeEach(() => {
@@ -40,10 +43,27 @@ describe('Expert', () => {
 
     it('Simulando tecla TAB', () => {
         cy.get('body').press('Tab')
-        cy.focused().should('have.attr','id','email')
+        cy.focused().should('have.attr', 'id', 'email')
 
         cy.get('#email').press('Tab')
-        cy.focused().should('have.attr','id','password')
+        cy.focused().should('have.attr', 'id', 'password')
+    })
+
+    it.only('Simulando inclusão de dados fakes', () => {
+        cy.log('todo')
+
+        _.times(5, () => {
+
+            const name = faker.person.fullName()
+            const email = faker.internet.email()
+            const password = 'pwd123'
+
+            cy.log(name)
+            cy.log(email)
+            cy.log(password)
+        })
+        
+
     })
 
 })

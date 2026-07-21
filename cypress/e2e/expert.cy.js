@@ -21,7 +21,7 @@ describe('Expert', () => {
             .should('be.visible')
     })
 
-    it.only('Não deve logar com senha incorreta', () => {
+    it('Não deve logar com senha incorreta', () => {
         cy.submitLoginForm('papito@webdojo.com', 'katana321')
 
         cy.get('[data-sonner-toaster=true]')
@@ -36,6 +36,14 @@ describe('Expert', () => {
 
         cy.get('@toast')
             .should('not.exist')
+    })
+
+    it('Simulando tecla TAB', () => {
+        cy.get('body').press('Tab')
+        cy.focused().should('have.attr','id','email')
+
+        cy.get('#email').press('Tab')
+        cy.focused().should('have.attr','id','password')
     })
 
 })

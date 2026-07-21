@@ -49,7 +49,7 @@ describe('Expert', () => {
         cy.focused().should('have.attr', 'id', 'password')
     })
 
-    it.only('Simulando inclusão de dados fakes', () => {
+    it('Simulando inclusão de dados fakes', () => {
         cy.log('todo')
 
         _.times(5, () => {

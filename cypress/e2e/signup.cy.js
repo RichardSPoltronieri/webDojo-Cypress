@@ -1,3 +1,6 @@
+import { faker } from '@faker-js/faker'
+import _ from 'lodash'
+
 describe('Cadastro', () => {
     beforeEach(() => {
         cy.goToSignup()
@@ -8,19 +11,26 @@ describe('Cadastro', () => {
                 message: "Usuário cadastrado com sucesso"
             }
         }).as('postSignup')
-    })  
-
-    it('Deve cadastrar um novo usuário', () => {
-        cy.get('#name').type('Richard')
-        cy.get('#email').type('teste@teste.com.br')
-        cy.get('#password').type('123456')
-        cy.contains('button', 'Criar conta').click()
-
-        // cy.wait('@postSignup')
-
-        cy.contains('Conta criada com sucesso!')
-            .should('be.visible')
-
-        // cy.get('.title') Erro ao criar conta
     })
-})
+
+    _.times(5, () => {
+
+        it('Deve cadastrar um novo usuário', () => {
+
+                const name = faker.person.fullName()
+                const email = faker.internet.email()
+                const password = 'pwd123'
+
+                cy.get('#name').type(name)
+                cy.get('#email').type(email)
+                cy.get('#password').type(password)
+                cy.contains('button', 'Criar conta').click()
+
+                cy.wait('@postSignup')
+
+                cy.contains('Conta criada com sucesso!')
+                    .should('be.visible')
+            })
+        })
+
+    })
